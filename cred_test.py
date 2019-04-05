@@ -40,7 +40,7 @@ class Testcred(unittest.TestCase):
         objects to our credentials_array
         '''
         self.new_cred.save_cred()
-        test_cred = Cred("CredTest", "CTcred", "CT1999")
+        test_cred = Cred("CredTest", "Tcred", "CT1999")
         test_cred.save_cred()
         self.assertEqual(len(Cred.credentials_array), 2)
 
@@ -55,6 +55,33 @@ class Testcred(unittest.TestCase):
         self.new_cred.delete_cred()
         self.assertEqual(len(Cred.credentials_array), 1)
 
+
+    def test_find_cred_by_account(self):
+        '''
+        test to check if we can find credentials by account and display information
+        '''
+
+        self.new_cred.save_cred()
+        test_cred = Cred("CredTest", "Tcred", "CT1999")
+        test_cred.save_cred()
+        found_cred = Cred.find_by_account("CredTest")
+        self.assertEqual(found_cred.account,test_cred.account)
+
+    def test_cred_test(self):
+        '''
+        test to check if we can return a Boolean  if we cannot find the credentials
+        '''
+        self.new_cred.save_cred()
+        test_cred = Cred("CredTest", "Tcred", "CT1999")
+        test_cred.save_cred()
+        cred_exists = Cred.cred_exist("CredTest")
+        self.assertTrue(cred_exists)
+
+    def test_display_all_credentials(self):
+        '''
+        method that returns a array of all users saved
+        '''
+        self.assertEqual(Cred.display_creds(), Cred.credentials_array)
 
 if __name__ == '__main__':
     unittest.main()

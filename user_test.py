@@ -4,7 +4,7 @@ from user import User
 class TestUser(unittest.TestCase):
     '''
     Test class that defines test cases for the user class behaviours.
-
+username_login
     Args:
         unittest.TestCase: TestCase class that helps in creating test cases
     '''
@@ -56,6 +56,33 @@ class TestUser(unittest.TestCase):
 
         self.new_user.delete_user()
         self.assertEqual(len(User.user_array), 1)
+
+    def test_find_user_by_username(self):
+        '''
+        test to check if we can find a user by phone number and display information
+        '''
+
+        self.new_user.save_user()
+        test_user = User("Test", "User", "Tuser", "T1999")
+        test_user.save_user()
+        found_user = User.find_by_username("Tuser")
+        self.assertEqual(found_user.username_login,test_user.username_login)
+
+    def test_user_test(self):
+        '''
+        test to check if we can return a Boolean  if we cannot find the user.
+        '''
+        self.new_user.save_user()
+        test_user = User("Test", "User", "Tuser", "T1999")
+        test_user.save_user()
+        user_exists = User.user_exist("Tuser")
+        self.assertTrue(user_exists)
+
+    def test_display_all_users(self):
+        '''
+        method that returns a array of all users saved
+        '''
+        self.assertEqual(User.display_users(), User.user_array)
 
 if __name__ == '__main__':
     unittest.main()

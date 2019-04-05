@@ -24,3 +24,37 @@ class User:
         delete_user method deletes a saved user from the user_array
         '''
         User.user_array.remove(self)
+
+    @classmethod
+    def find_by_username(cls, username_login):
+        '''
+        Method that takes in a username and returns a user that matches that username.
+
+        Args:
+            username_login:  username to search for
+        Returns :
+            User of person that matches the username.
+        '''
+        for user in cls.user_array:
+            if user.username_login == username_login:
+                return user
+
+    @classmethod
+    def user_exist(cls, username_login):
+        '''
+        Method that checks if a user exists from the user array.
+        Args:
+            username_login:  username to search if it exists
+        Returns :
+            Boolean: True or false depending if the user exists
+        '''
+        for user in cls.user_array:
+            if user.username_login == username_login:
+                return True
+
+    @classmethod
+    def display_users(cls):
+        '''
+        method that returns the user array
+        '''
+        return cls.user_array

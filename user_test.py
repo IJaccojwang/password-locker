@@ -31,14 +31,24 @@ class TestUser(unittest.TestCase):
 
     def test_save_user(self):
         '''
-        test_save_user test case to test if the user object is saved to user list
+        test_save_user test case to test if the user object is saved to user array
         '''
         self.new_user.save_user()
         self.assertEqual(len(User.user_array),1)
 
+    def test_save_multiple_user(self):
+        '''
+        test_save_multiple_user to check if we can save multiple user
+        bjects to our user_array
+        '''
+        self.new_user.save_user()
+        test_user = User("Test", "User", "Tuser", "T1999")
+        test_user.save_user()
+        self.assertEqual(len(User.user_array), 2)
+
     def test_delete_user(self):
         '''
-        test_delete_contact to test if we can remove a contact from our contact list
+        test_delete_user to test if we can remove a user from our user array
         '''
         self.new_user.save_user()
         test_user = User("Test", "User", "Tuser", "T1999")

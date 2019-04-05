@@ -40,9 +40,20 @@ class Testcred(unittest.TestCase):
         objects to our credentials_array
         '''
         self.new_cred.save_cred()
-        test_user = Cred("CredTest", "CTuser", "CT1999")
-        test_user.save_cred()
+        test_cred = Cred("CredTest", "CTcred", "CT1999")
+        test_cred.save_cred()
         self.assertEqual(len(Cred.credentials_array), 2)
+
+    def test_delete_cred(self):
+        '''
+        test_delete_cred to test if we can remove a credential from our credentials array
+        '''
+        self.new_cred.save_cred()
+        test_cred = Cred("CredTest", "Tcred", "CT1999")
+        test_cred.save_cred()
+
+        self.new_cred.delete_cred()
+        self.assertEqual(len(Cred.credentials_array), 1)
 
 
 if __name__ == '__main__':

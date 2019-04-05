@@ -1,6 +1,7 @@
 import unittest
 from cred import Cred
 
+
 class Testcred(unittest.TestCase):
     '''
     Test class that defines test cases for the credentials class behaviours.

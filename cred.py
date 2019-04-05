@@ -1,3 +1,6 @@
+import random
+import string
+
 class Cred:
     """
     Class that generates new instances of credentials
@@ -23,6 +26,18 @@ class Cred:
         delete_cred method deletes a saved credentials from the credentials_array
         '''
         Cred.credentials_array.remove(self)
+
+    def generate_password(self,length):
+        self.length = length
+        pwd = []
+        count = 0
+        while (count < length/3):
+            pwd.append(random.choice(string.ascii_lowercase))
+            pwd.append(random.choice(string.ascii_uppercase))
+            pwd.append(str(random.randint(0,9)))
+            count = count + 1
+        random.shuffle(pwd)
+        return ''.join(pwd)
 
     @classmethod
     def find_by_account(cls, account):

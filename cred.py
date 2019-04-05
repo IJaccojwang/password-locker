@@ -11,3 +11,9 @@ class Cred:
         self.account = account
         self.username_cred = username_cred
         self.password_cred = password_cred
+
+    def save_cred(self):
+        '''
+        save_user method saves user objects into user_array
+        '''
+        Cred.credentials_array.append(self)

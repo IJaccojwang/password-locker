@@ -27,6 +27,23 @@ class Testcred(unittest.TestCase):
         self.assertEqual(self.new_cred.username_cred, "IJaccojwang")
         self.assertEqual(self.new_cred.password_cred, "I1999")
 
+    def test_save_cred(self):
+        '''
+        test_save_cred test case to test if the cred object is saved to credentials array
+        '''
+        self.new_cred.save_cred()
+        self.assertEqual(len(Cred.credentials_array),1)
+
+    def test_save_multiple_cred(self):
+        '''
+        test_save_multiple_cred to check if we can save multiple cred
+        objects to our credentials_array
+        '''
+        self.new_cred.save_cred()
+        test_user = Cred("CredTest", "CTuser", "CT1999")
+        test_user.save_cred()
+        self.assertEqual(len(Cred.credentials_array), 2)
+
 
 if __name__ == '__main__':
     unittest.main()

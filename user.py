@@ -51,10 +51,3 @@ class User:
         for user in cls.user_array:
             if user.username_login == username_login:
                 return True
-
-    @classmethod
-    def display_users(cls):
-        '''
-        method that returns the user array
-        '''
-        return cls.user_array

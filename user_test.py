@@ -78,11 +78,6 @@ username_login
         user_exists = User.user_exist("Tuser")
         self.assertTrue(user_exists)
 
-    def test_display_all_users(self):
-        '''
-        method that returns a array of all users saved
-        '''
-        self.assertEqual(User.display_users(), User.user_array)
 
 if __name__ == '__main__':
     unittest.main()

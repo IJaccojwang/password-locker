@@ -18,3 +18,9 @@ class User:
         save_user method saves user objects into user_array
         '''
         User.user_array.append(self)
+
+    def delete_user(self):
+        '''
+        delete_user method deletes a saved user from the user_array
+        '''
+        User.user_array.remove(self)

@@ -33,11 +33,11 @@ def check_existing_users(number):
     '''
     return User.user_exist(number)
 
-def create_cred(accnt, uname, pword):
+def create_cred(username, accnt, uname, pword):
     '''
-    Function to create new cred
+    Function to create new credentials
     '''
-    new_cred = Cred(accnt, uname, pword)
+    new_cred = Cred(username, accnt, uname, pword)
     return new_cred
 
 def save_cred(cred):
@@ -46,13 +46,13 @@ def save_cred(cred):
     '''
     cred.save_cred()
 
-def delete_cred():
+def delete_cred(cred):
     '''
     Function to delete cred
     '''
     cred.delete_cred()
 
-def find_cred():
+def find_cred(account):
     '''
     Function that finds a cred by number and returns the cred
     '''
@@ -74,9 +74,9 @@ def display_creds():
 
 def main():
     print("Hello, welcome to Password Locker.")
-    print("Use the following short codes for navigation: ca - create a new account, da - delete your account, li - log in to your account, exa - exit application")
 
     while True:
+        print("Use the following short codes for navigation: ca - create a new account, da - delete your account, li - log in to your account, exa - exit application")
         short_code = input()
         if short_code == 'ca':
             print('Please fill in the following details to create a new account')
@@ -125,6 +125,78 @@ def main():
                 search_user = find_user(username)
                 if (password == search_user.password_login):
                     print(f"Welcome {search_user.first_name} {search_user.last_name}")
+
+                    while True:
+                        print("What would you like to do: cc - create a new credential, dc - delete credential, vc - view credential, va - view all credentials, lo - log out")
+                        acc_nav = input()
+
+                        if acc_nav == 'cc':
+                            print ("Account type eg. Faceook ....")
+                            account = input()
+
+                            print("Account username ...")
+                            uname = input()
+
+                            print("Account password...")
+                            pword = input()
+
+                            print('\n')
+                            save_cred(create_cred(username, account, uname, pword))
+                            print('\n')
+
+                            print('\n')
+                            print(f"New Credentials for {account} created")
+                            print('\n')
+
+                        elif acc_nav == 'dc':
+                            print('Enter the account name of the credential you would like to delete')
+                            delete_name = input()
+                            if check_existing_creds(delete_name):
+                                search_cred = find_cred(delete_name)
+                                if search_cred.username_login == username:
+                                    delete_cred(search_cred)
+                                    print(f"{search_cred.account} credentails have been deleted")
+                                else:
+                                    print ("The credential does not exist")
+                                    break
+                            else:
+                                print("Account does not exist")
+
+                        elif acc_nav == 'vc':
+                            print("Enter the account you want to search for")
+                            search_cred = input()
+                            if (check_existing_creds(search_cred) and
+                                search_cred.username_login == username):
+                                print(f"{search_cred.account}")
+                                print('-'*20)
+                                print(f"Username.......{search_cred.username_cred}")
+                                print(f"Password.......{search_cred.password_cred}")
+                            else:
+                                print("That contact does not exist")
+
+                        elif acc_nav == 'va':
+                            if display_creds():
+                                print("Here are your credentials")
+                                print('\n')
+
+                                for cred in display_creds():
+                                    if cred.username_login == username:
+                                        print(f"{cred.account} {cred.username_cred}.....{cred.password_cred}")
+                                        print('\n')
+                                    else:
+                                        print('\n')
+                                        print("Restricted")
+                                        break
+                                        print('\n')
+
+                        elif acc_nav == 'lo':
+                            print("You have successfully logged out of your account. See you next time!")
+                            break
+
+                        else:
+                            print("Please use one of the navigation shortcodes provided")
+
+
                 else:
                     print("Sorry, wrong password")
             else:

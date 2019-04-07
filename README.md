@@ -37,7 +37,7 @@ The user will be able to log in and perform the following functions:
 * Search for specific credentials
 
 | Behaviour |  Samlple Input | Sample Output |
-| :---------------- | :---------------: | ------------------: |
+| :---------------- | :---------------: | :------------------ |
 | Create an account | Enter: ca | Enter your first name, last name, a username and password |
 | Login in | Enter: li | Enter your usernamename and password |
 | Navigate | Successful login | Choose an option: cc - Create Credential, vc - View Credential, va - View All Credentials, dc - Delete Credential, lo - log out |

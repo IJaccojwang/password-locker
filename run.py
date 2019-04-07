@@ -89,6 +89,7 @@ def main():
     print("Hello, welcome to Password Locker.")
 
     while True:
+        print('\n')
         print("Use the following short codes for navigation: ca - create a new account, da - delete your account, li - log in to your account, exa - exit application")
         short_code = input()
         if short_code == 'ca':
@@ -149,6 +150,8 @@ def main():
                     print(f"Welcome {search_user.first_name} {search_user.last_name}")
 
                     while True:
+                        print('\n')
+                        print('\n')
                         print("What would you like to do: cc - create a new credential, dc - delete credential, vc - view credential, va - view all credentials, lo - log out")
                         acc_nav = input()
 
@@ -166,7 +169,11 @@ def main():
                             if decision == 'y':
                                 print('\n')
                                 print("Please enter desired password length")
-                                length = int(input())
+                                try:
+                                    length = int(input())
+                                except ValueError:
+                                    print("Only numbers accepted")
+                                    break
                                 pword = generate_password(length)
                                 print('\n')
                                 print(f"Your new password for {account} is {pword}. Don't forget.")

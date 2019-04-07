@@ -12,7 +12,7 @@ class Testcred(unittest.TestCase):
         '''
         Set up method to run before each test case.
         '''
-        self.new_cred = Cred("Faceb", "IJaccojwang", "I1999")
+        self.new_cred = Cred("IJacco" ,"Faceb", "IJaccojwang", "I1999")
 
     def tearDown(self):
         '''
@@ -24,6 +24,7 @@ class Testcred(unittest.TestCase):
         '''
         test_init test case to test if the cred object is initialized properly
         '''
+        self.assertEqual(self.new_cred.username_login, "IJacco")
         self.assertEqual(self.new_cred.account, "Faceb")
         self.assertEqual(self.new_cred.username_cred, "IJaccojwang")
         self.assertEqual(self.new_cred.password_cred, "I1999")
@@ -41,7 +42,7 @@ class Testcred(unittest.TestCase):
         objects to our credentials_array
         '''
         self.new_cred.save_cred()
-        test_cred = Cred("CredTest", "Tcred", "CT1999")
+        test_cred = Cred("TC", "CredTest", "Tcred", "CT1999")
         test_cred.save_cred()
         self.assertEqual(len(Cred.credentials_array), 2)
 
@@ -50,7 +51,7 @@ class Testcred(unittest.TestCase):
         test_delete_cred to test if we can remove a credential from our credentials array
         '''
         self.new_cred.save_cred()
-        test_cred = Cred("CredTest", "Tcred", "CT1999")
+        test_cred = Cred("TC", "CredTest", "Tcred", "CT1999")
         test_cred.save_cred()
 
         self.new_cred.delete_cred()
@@ -63,7 +64,7 @@ class Testcred(unittest.TestCase):
         '''
 
         self.new_cred.save_cred()
-        test_cred = Cred("CredTest", "Tcred", "CT1999")
+        test_cred = Cred("TC", "CredTest", "Tcred", "CT1999")
         test_cred.save_cred()
         found_cred = Cred.find_by_account("CredTest")
         self.assertEqual(found_cred.account,test_cred.account)
@@ -73,7 +74,7 @@ class Testcred(unittest.TestCase):
         test to check if we can return a Boolean  if we cannot find the credentials
         '''
         self.new_cred.save_cred()
-        test_cred = Cred("CredTest", "Tcred", "CT1999")
+        test_cred = Cred("TC", "CredTest", "Tcred", "CT1999")
         test_cred.save_cred()
         cred_exists = Cred.cred_exist("CredTest")
         self.assertTrue(cred_exists)

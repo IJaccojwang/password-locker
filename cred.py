@@ -7,10 +7,11 @@ class Cred:
     """
     credentials_array = []
 
-    def __init__(self, account, username_cred, password_cred):
+    def __init__(self, username_login, account, username_cred, password_cred):
         '''
         Take input to create new credentials
         '''
+        self.username_login = username_login
         self.account = account
         self.username_cred = username_cred
         self.password_cred = password_cred

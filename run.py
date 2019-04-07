@@ -74,7 +74,7 @@ def display_creds():
 
 def main():
     print("Hello, welcome to Password Locker.")
-    print("Use the following short codes for navigation: ca - create a new account, li - log in to your account, da - delete your account, exa - exit application")
+    print("Use the following short codes for navigation: ca - create a new account, da - delete your account, li - log in to your account, exa - exit application")
 
     while True:
         short_code = input()
@@ -104,18 +104,6 @@ def main():
             print(f"New User {f_name} {l_name} created")
             print('\n')
 
-
-        elif short_code == 'li':
-            print("Welcome to log in")
-            # print("Enter your username: ")
-            # username = input()
-            # print("Enter your password")
-            # password = input()
-            #
-            # if (username == password ) :
-            #     print(f"Welcome name person")
-            # else("Sorry, wrong password")
-
         elif short_code == 'da':
             print('Enter the username of the account you would like to delete')
             delete_name = input()
@@ -125,6 +113,23 @@ def main():
                 print(f"{search_user.first_name} {search_user.last_name} has been deleted")
             else:
                 print("Account does not exist")
+
+
+        elif short_code == 'li':
+            print("Welcome to log in")
+            print("Enter your username: ")
+            username = input()
+            if check_existing_users(username):
+                print("Enter your password:")
+                password = input()
+                search_user = find_user(username)
+                if (password == search_user.password_login):
+                    print(f"Welcome {search_user.first_name} {search_user.last_name}")
+                else:
+                    print("Sorry, wrong password")
+            else:
+                print("Account does not exist")
+
 
         elif short_code == 'exa':
             print('Bye')

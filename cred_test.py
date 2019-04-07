@@ -66,7 +66,7 @@ class Testcred(unittest.TestCase):
         self.new_cred.save_cred()
         test_cred = Cred("TC", "CredTest", "Tcred", "CT1999")
         test_cred.save_cred()
-        found_cred = Cred.find_by_account("CredTest")
+        found_cred = Cred.find_by_account("TC", "CredTest")
         self.assertEqual(found_cred.account,test_cred.account)
 
     def test_cred_test(self):

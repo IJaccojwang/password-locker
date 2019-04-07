@@ -54,11 +54,11 @@ def delete_cred(cred):
     '''
     cred.delete_cred()
 
-def find_cred(account):
+def find_cred(username_login, account):
     '''
     Function that finds a cred by number and returns the cred
     '''
-    return Cred.find_by_account(account)
+    return Cred.find_by_account(username_login, account)
 
 def check_existing_creds(number):
     '''
@@ -198,9 +198,9 @@ def main():
 
                         elif acc_nav == 'vc':
                             print("Enter the account you want to search for")
-                            search_cred = input()
-                            if (check_existing_creds(search_cred) and
-                                search_cred.username_login == username):
+                            find_name = input()
+                            search_cred = find_cred(username, find_name)
+                            if check_existing_creds(find_name):
                                 print(f"{search_cred.account}")
                                 print('-'*20)
                                 print(f"Username.......{search_cred.username_cred}")
@@ -210,18 +210,15 @@ def main():
 
                         elif acc_nav == 'va':
                             if display_creds():
-                                print("Here are your credentials")
+                                print("Here are your credentials:")
                                 print('\n')
 
                                 for cred in display_creds():
                                     if cred.username_login == username:
                                         print(f"{cred.account} -- Username: {cred.username_cred} | Password: {cred.password_cred}")
                                         print('\n')
-                                    else:
-                                        print('\n')
-                                        print("Restricted")
-                                        break
-                                        print('\n')
+                            else:
+                                print("No credentials available")
 
                         elif acc_nav == 'lo':
                             print("You have successfully logged out of your account. See you next time!")

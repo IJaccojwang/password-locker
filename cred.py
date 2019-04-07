@@ -26,7 +26,7 @@ class Cred:
         Cred.credentials_array.remove(self)
 
     @classmethod
-    def find_by_account(cls, account):
+    def find_by_account(cls, username_login, account):
         '''
         Method that takes in an account name and returns credentials that matches that account.
 
@@ -36,7 +36,7 @@ class Cred:
             Credentials of account that matches the account name
         '''
         for cred in cls.credentials_array:
-            if cred.account == account:
+            if cred.account == account and cred.username_login == username_login:
                 return cred
 
     @classmethod

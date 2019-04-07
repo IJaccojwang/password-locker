@@ -36,10 +36,10 @@ The user will be able to log in and perform the following functions:
 * View all login credentials
 * Search for specific credentials
 
-| Behaviour |  Samlple Input | Sample Output |
+| Behaviour |  Sample Input | Sample Output |
 | :---------------- | :---------------: | :------------------ |
 | Create an account | Enter: ca | Enter your first name, last name, a username and password |
-| Login in | Enter: li | Enter your usernamename and password |
+| Login in | Enter: li | Enter your username and password |
 | Navigate | Successful login | Choose an option: cc - Create Credential, vc - View Credential, va - View All Credentials, dc - Delete Credential, lo - log out |
 | Creating a credential | Enter: cc | Enter the account name, username and password |
 | View a credential | Enter: vc | Returns searched credential |

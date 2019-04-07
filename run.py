@@ -164,15 +164,20 @@ def main():
                             print("y - Yes, n - No")
                             decision = input().lower()
                             if decision == 'y':
+                                print('\n')
                                 print("Please enter desired password length")
                                 length = int(input())
                                 pword = generate_password(length)
+                                print('\n')
                                 print(f"Your new password for {account} is {pword}. Don't forget.")
                             elif decision == 'n':
+                                print('\n')
                                 print("Please enter your new password")
                                 pword = input()
                             else:
+                                print('\n')
                                 print("Use either y or n")
+                                print('\n')
 
                             print('\n')
                             save_cred(create_cred(username, account, uname, pword))
@@ -186,60 +191,88 @@ def main():
                             print('Enter the account name of the credential you would like to delete')
                             delete_name = input()
                             if check_existing_creds(delete_name):
-                                search_cred = find_cred(delete_name)
-                                if search_cred.username_login == username:
+                                search_cred = find_cred(username, delete_name)
+                                print(f"Are you sure you want to delete {search_cred.account} credentials")
+
+                                print('\n')
+                                print("y - Yes, n - No")
+                                print('\n')
+                                decision = input().lower()
+                                if decision == 'y':
                                     delete_cred(search_cred)
+                                    print('\n')
                                     print(f"{search_cred.account} credentails have been deleted")
+                                    print('\n')
                                 else:
-                                    print ("The credential does not exist")
-                                    break
+                                    print('\n')
+                                    print("Credentials still available")
+                                    print('\n')
                             else:
-                                print("Account does not exist")
+                                print('\n')
+                                print ("The credential does not exist")
+                                print('\n')
 
                         elif acc_nav == 'vc':
+                            print('\n')
                             print("Enter the account you want to search for")
+                            print('\n')
                             find_name = input()
                             search_cred = find_cred(username, find_name)
                             if check_existing_creds(find_name):
+                                print('\n')
                                 print(f"{search_cred.account}")
                                 print('-'*20)
                                 print(f"Username.......{search_cred.username_cred}")
                                 print(f"Password.......{search_cred.password_cred}")
+                                print('\n')
                             else:
+                                print('\n')
                                 print("That contact does not exist")
+                                print('\n')
 
                         elif acc_nav == 'va':
                             if display_creds():
+                                print('\n')
                                 print("Here are your credentials:")
                                 print('\n')
 
                                 for cred in display_creds():
                                     if cred.username_login == username:
+                                        print('\n')
                                         print(f"{cred.account} -- Username: {cred.username_cred} | Password: {cred.password_cred}")
                                         print('\n')
                             else:
+                                print('\n')
                                 print("No credentials available")
+                                print('\n')
 
                         elif acc_nav == 'lo':
+                            print('\n')
                             print("You have successfully logged out of your account. See you next time!")
+                            print('\n')
                             break
 
                         else:
+                            print('\n')
                             print("Please use one of the navigation shortcodes provided")
-
+                            print('\n')
 
                 else:
+                    print('\n')
                     print("Sorry, wrong password")
             else:
+                print('\n')
                 print("Account does not exist")
-
+                print('\n')
 
         elif short_code == 'exa':
+            print('\n')
             print('Bye')
             break
         else:
+            print('\n')
             print("Please use one of the shortcodes provided")
-
+            print('\n')
 
 if __name__ == '__main__':
 

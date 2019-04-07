@@ -1,6 +1,8 @@
 #!/usr/bin/env python3.6
 from user import User
 from cred import Cred
+import string
+import random
 
 def create_user(fname, lname, usrname, pssword):
     '''
@@ -70,6 +72,17 @@ def display_creds():
     '''
     return Cred.display_creds()
 
+def generate_password(length):
+    pwd = []
+    count = 0
+    while (count < length/3):
+        pwd.append(random.choice(string.ascii_lowercase))
+        pwd.append(random.choice(string.ascii_uppercase))
+        pwd.append(str(random.randint(0,9)))
+        count = count + 1
+    random.shuffle(pwd)
+    return ''.join(pwd)
+
 
 
 def main():
@@ -109,8 +122,17 @@ def main():
             delete_name = input()
             if check_existing_users(delete_name):
                 search_user = find_user(delete_name)
-                delete_user(search_user)
-                print(f"{search_user.first_name} {search_user.last_name} has been deleted")
+                print("Enter your password")
+                password = input()
+                if password == search_user.password_login:
+                    print(f"Are you sure you want to delete {search_user.first_name} {search_user.last_name}")
+                    print("y - yes, n - no")
+                    yesNo = input().lower()
+                    if yesNo == 'y':
+                        delete_user(search_user)
+                        print(f"{search_user.first_name} {search_user.last_name} has been deleted")
+                    elif yesNo == 'n':
+                        print("User still present")
             else:
                 print("Account does not exist")
 
@@ -138,7 +160,19 @@ def main():
                             uname = input()
 
                             print("Account password...")
-                            pword = input()
+                            print("Would you like an auto generated Password?")
+                            print("y - Yes, n - No")
+                            decision = input().lower()
+                            if decision == 'y':
+                                print("Please enter desired password length")
+                                length = int(input())
+                                pword = generate_password(length)
+                                print(f"Your new password for {account} is {pword}. Don't forget.")
+                            elif decision == 'n':
+                                print("Please enter your new password")
+                                pword = input()
+                            else:
+                                print("Use either y or n")
 
                             print('\n')
                             save_cred(create_cred(username, account, uname, pword))
@@ -181,7 +215,7 @@ def main():
 
                                 for cred in display_creds():
                                     if cred.username_login == username:
-                                        print(f"{cred.account} {cred.username_cred}.....{cred.password_cred}")
+                                        print(f"{cred.account} -- Username: {cred.username_cred} | Password: {cred.password_cred}")
                                         print('\n')
                                     else:
                                         print('\n')

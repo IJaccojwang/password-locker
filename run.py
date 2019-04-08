@@ -205,7 +205,7 @@ def main():
                                 print("y - Yes, n - No")
                                 print('\n')
                                 decision = input().lower()
-                                if decision == 'y':
+                                if decision == 'y':fri
                                     delete_cred(search_cred)
                                     print('\n')
                                     print(f"{search_cred.account} credentails have been deleted")
@@ -234,7 +234,7 @@ def main():
                                 print('\n')
                             else:
                                 print('\n')
-                                print("That contact does not exist")
+                                print("That credential does not exist")
                                 print('\n')
 
                         elif acc_nav == 'va':
